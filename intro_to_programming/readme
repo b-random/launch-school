@@ -1,0 +1,42 @@
+* files that start with *, need to be studied more
+
+{hash notes}
+
+.fetch = call on keys to call the value
+.select = used for block
+.has_key? = true or false
+to_a = returns as array that can index *hash.to_a[2]
+.keys or .values = retrieve all respective in array format, index
+.flatten = returns elements in new array, *$ [[1, 2, 3][4, 5, 6]] to [1, 2, 3, 4, 5, 6, ]
+.each_key or .each_value = for blocks
+
+_______FILES___________
+
+open file: File.open("file_name", "permissions")
+new file: my_file = File.new("file_name.txt", "w")
+always close files: my_file.close
+read file: File.read("file_name") or File.readlines
+** use blocks in irb to add lines, read and auto-close
+** for block: use puts, <<, or .write
+ **.each_with_index do |line_number, line|
+ 
+ 
+___Permissions___
+
+r : read only (starts at beginning of file)
+w : write only (overwrites)
+w+: read and write (overwrites)
+a+: read-write (starts at end of file or creates new file, for updating)
+
+____File block examples_____
+
+irb$> a = File.read("file_name.txt")
+=> "prints file contenmts"
+irb$> b = File.new("name_your_file.txt", "w+") 
+=> #<File:name_your_file.txt>
+irb$>File.open( b, "a" ) do |file|
+            file.puts a 
+          end
+=> nil
+irn$> File.read(b)
+=> "file contents here"
