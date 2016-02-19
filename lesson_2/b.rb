@@ -1,5 +1,3 @@
-VALID_CHOICES = %w(rock paper scissors lizard spock)
+x = 3.5865
 
-
-puts VALID_CHOICES[1]
-
+puts x.BigDecimal

@@ -31,6 +31,8 @@ def duration_years(d)
     d / 12
 end
 
+prompt('WELCOME TO THE AUTO LOAN CALCULATOR')
+
 loop do
   loan = ' '
   loop do
@@ -46,13 +48,13 @@ loop do
   
   apr = ' '
   loop do
-    prompt('Enter annual percentage rate (APR), between 1 and 18:')
+    prompt('Enter annual percentage rate (APR), between 1 and 18.5:')
     apr = gets.chomp.to_f
     
-    if apr >= 1 && apr <=  18
+    if apr >= 0 && apr <=  18.5
       break
     else
-      prompt('Please choose a valid annual percentage rate between 1 and 18:')
+      prompt('Please choose a valid annual percentage rate between 1 and 18.5:')
     end
   end
   
@@ -61,7 +63,7 @@ loop do
     prompt('Enter duration of loan in months- 12, 24, 36, 48 or 60?  :')
     dur = gets.chomp.to_f
     
-    if dur % 12 == 0 && dur < 60
+    if dur % 12 == 0 && dur <= 60 && dur != 0
       break
     else
       prompt('Please enter valid length of loan:')
@@ -73,20 +75,23 @@ loop do
   total_interest = tot_apr(apr, loan)
   monthly_interest = month_apr(total_interest, dur)
   
+  loop do
     if apr == 0
-          prompt('You have an interest free loan!')
+      prompt('You have an interest free loan!')
+      break
     else
-          prompt("The total paid in interest is $#{total_interest.round(2)}, and the monthly interest is $#{monthly_interest.round(2)}")
+      prompt("The total paid in interest is $#{'%.2f' % total_interest}, and the monthly interest is $#{'%.2f' % monthly_interest}")
+      break
     end
-  
-    
+  end
   
   premium = monthly(loan, dur) + total_interest
   duration = duration_years(dur)
-  prompt ("The total monthly premium is $#{premium.round(2)} for #{duration.to_i} years") 
+  prompt("The total monthly premium is #{'%.2f' % premium} for #{duration.to_i} years") 
   puts '__________________________'
   prompt("Do you need to calculate another loan? Y or N:")
   again = Kernel.gets.chomp
-  break unless again.downcase().start_with?("y") 
+  break unless again.downcase().start_with?("y")
 end
+
 
