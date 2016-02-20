@@ -3,7 +3,7 @@ VALID_CHOICES = %w(rock paper scissors lizard spock)
 ABBREVIATED_CHOICES = %w(ro pa sc li sp)
 
 def prompt(message)
-  puts("#{message}")
+  puts(message)
 end
 
 def change_initial(convert)
@@ -30,11 +30,11 @@ def results(player, computer)
   elsif winner?(computer, player)
     'Ouch! You lost this round.'
   else
-    prompt("It's a tie...\nNo points awarded.")
+    "It's a tie...\nNo points awarded."
   end
 end
 
-def score_keeper(result, score_keeper)
+def display_results(result, score_keeper)
   if result == 'Boom! You won this round!'
     score_keeper[:player] += 1
   elsif result == 'Ouch! You lost this round.'
@@ -42,8 +42,8 @@ def score_keeper(result, score_keeper)
   end
 end
 
-def score_output(score_keeper)
-  prompt("Curent score: #{score_keeper}")
+def output_score(score_keeper)
+  prompt("You have #{score_keeper[:player]} point(s) and the evil machine has #{score_keeper[:computer]} point(s)")
   if score_keeper[:player] == 5
     prompt("WINNER! WINNER! CHICKEN DINNER! YOU BEAT THE EVIL COMPUTER!\nIf I were you, I would quit while I was ahead...")
   elsif score_keeper[:computer] == 5
@@ -52,7 +52,9 @@ def score_output(score_keeper)
 end
 
 
-prompt("It's time to play ROCK, PAPER, SCISSOR, LIZARD, SPOCK!!!!!!!!! \n  The best out of five rounds, WINS!! \n  You can type out the full name, or just the first two letters.")
+prompt("It's time to play ROCK, PAPER, SCISSOR, LIZARD, SPOCK!!!!!!!!!")
+prompt('The best out of five rounds, WINS!!')
+prompt('You can type out the full name, or just the first two letters.')
 
 loop do  
   scores = { player:  0, computer:  0 }
@@ -83,9 +85,9 @@ loop do
   
     prompt("#{winner}")
   
-    score_keeper(winner, scores)
+    display_results(winner, scores)
   
-    score_output(scores)
+    output_score(scores)
     
   end
   
@@ -93,3 +95,5 @@ prompt('Play another round? Enter Y or N...')
 again = gets.chomp
 break unless again.downcase.start_with?('y')
 end
+
+
