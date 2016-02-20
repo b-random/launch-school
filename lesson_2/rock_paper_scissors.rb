@@ -17,7 +17,7 @@ def change_initial(convert)
 end
 
 def winner?(first, second)
-  (firtst == 'rock' && second == 'scissors') || (first == 'rock' && second == 'lizard') ||
+  (first == 'rock' && second == 'scissors') || (first == 'rock' && second == 'lizard') ||
   (first == 'paper' && second == 'rock') || (first == 'paper' && second == 'spock') ||
   (first == 'scissors' && second == 'paper') || (first == 'scissors' && second == 'lizard') ||
   (first == 'lizard' && second == 'paper') || (first == 'lizard' && second == 'spock') ||
@@ -26,9 +26,9 @@ end
 
 def results(player, computer)
   if winner?(player, computer)
-    prompt('Boom! You won this round!')
-  if winner?(computer, player)
-    prompt('Ouch! You lost this round.')
+    'Boom! You won this round!'
+  elsif winner?(computer, player)
+    'Ouch! You lost this round.'
   else
     prompt("It's a tie...\nNo points awarded.")
   end
@@ -51,9 +51,10 @@ def score_output(score_keeper)
   end
 end
 
-loop do
-  prompt("It's time to play Rock, PAPER, SCISSOR, LIZARD, SPOCK!!!!!!!!! \n  The best out of five rounds, WINS!! \n  You can type out the full name, or just the first two letters.")
-  
+
+prompt("It's time to play ROCK, PAPER, SCISSOR, LIZARD, SPOCK!!!!!!!!! \n  The best out of five rounds, WINS!! \n  You can type out the full name, or just the first two letters.")
+
+loop do  
   scores = { player:  0, computer:  0 }
   until scores.value?(5)
   
@@ -67,6 +68,7 @@ loop do
         break
       elsif  ABBREVIATED_CHOICES.include?(choice)
        choice = change_initial(choice)
+       break
       else
         prompt("Whatever you just did, didn't work.  Give it another shot, genius.")
       end
@@ -75,7 +77,7 @@ loop do
   
     computer_choice = VALID_CHOICES.sample
   
-    prompt("You chose #{choice} and the computer chose #{computer_choice}w")
+    prompt("You chose #{choice} and the computer chose #{computer_choice}")
   
     winner = results(choice, computer_choice)
   
@@ -84,10 +86,10 @@ loop do
     score_keeper(winner, scores)
   
     score_output(scores)
+    
   end
   
-  prompt('Play another round? Enter Y or N...')
-  again = gets.chomp
-  break unless again.downcase.start_with('y')
-  end
+prompt('Play another round? Enter Y or N...')
+again = gets.chomp
+break unless again.downcase.start_with?('y')
 end
