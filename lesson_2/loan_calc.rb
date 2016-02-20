@@ -15,20 +15,20 @@ def prompt(message)
     puts "#{message}"
 end
 
-def tot_apr(a, l)
-    a / 100 * l
+def total_apr(input_apr, loan_amount)
+    input_apr / 100 * loan_amount
 end
 
-def monthly(l, d)
-    l / d
+def monthly(loan_amount, duration_months)
+    loan_amount / duration_months
 end
 
-def month_apr(t_a, d)
-    t_a / d
+def monthly_apr(total_of_apr, duration_months)
+    total_of_apr / duration_months
 end
     
-def duration_years(d)
-    d / 12
+def duration_years(duration_months)
+    duration_months / 12
 end
 
 prompt('WELCOME TO THE AUTO LOAN CALCULATOR')
@@ -72,17 +72,13 @@ loop do
   
   
   
-  total_interest = tot_apr(apr, loan)
-  monthly_interest = month_apr(total_interest, dur)
-  
-  loop do
-    if apr == 0
-      prompt('You have an interest free loan!')
-      break
-    else
-      prompt("The total paid in interest is $#{'%.2f' % total_interest}, and the monthly interest is $#{'%.2f' % monthly_interest}")
-      break
-    end
+  total_interest = total_apr(apr, loan)
+  monthly_interest = monthly_apr(total_interest, dur)
+  n
+  if apr == 0
+    prompt('You have an interest free loan!')
+  else
+    prompt("The total paid in interest is $#{'%.2f' % total_interest}, and the monthly interest is $#{'%.2f' % monthly_interest}")
   end
   
   premium = monthly(loan, dur) + total_interest
