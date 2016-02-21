@@ -1,0 +1,80 @@
+______________________________________________________________________________
+Pseudo-code
+_______________________________________________________________________________
+
+START => start the program
+SET => sets a variable we can use later
+GET => retrieve input from user
+PRINT => displays output to user
+READ => retrieve value from variable
+IF's => show conditional logic
+WHILE => show looping logic
+END => end of the program
+
+__________________________
+^^example: which number, in a collection, is biggest
+
+given a collection of integers.
+Iterate through the collection one by one.
+  - save the first value as the starting value.
+  - for each iteration, compare the saved value with the current value.
+  - if the saved value is greater, or it's the same
+    - move to the next value in the collection
+  - otherwise, if the current value is greater
+    - reassign the saved value as the current value
+  -After iterating through the collection, return the saved value.
+
+*Now advanceed pseudo-code*
+START
+
+#Given a collection of integers called "numbers"
+
+  -SET iterator = 1 (iterator = counter)
+  -SET saved_number = value of first iterated number from collection
+  -WHILE iterator < length of numbers in collection
+     -SET current_number = to the value of the number being iterated
+     -IF saved_number >= current_number
+       go to the next iteration
+     ELSE
+       saved_number = current_number
+       
+       iterator = iterator + 1
+       
+  -PRINT saved_number
+END
+
+**transfer psuedo to actual
+
+def find_greatest(numbers)
+  saved_number = 0 # set saved number = value of current number from list
+    
+  numbers.each do |nums| # using.each instead of specific iterator
+    if saved_number >= nums # compare the current and the listed number
+      next #go to next number if above saved number is greater
+      else #if saved number is smaller...
+      saved_number = nums #save the current larger number
+      end
+    end
+    
+    puts saved_number
+end
+
+find_greatest([1,5,7,9,2]) #give function an array to iterate through
+
+_____________________________________________________________________
+VARIABLE INSTANCES
+_____________________________________________________________________
+
+local variables instantiated in outer scope can be accessed by inner scope and
+any changes reflected in outer scope.  An inner scope variable cannot be accessed 
+by another another method or block
+
+  nested inner scope variables can be referenced going forward/up a level, but not back
+      
+  
+  constant variables (all caps) can be inner or outer -but follow differeent rules
+  
+
+
+
+  
