@@ -16,6 +16,28 @@ def change_initial(convert)
   end
 end
 
+def players_choice_display(player_one, player_two)
+  prompt("You chose #{player_one} and the computer chose #{player_two}")
+end
+
+def choose_your_weapon
+    choice = ' '
+    loop do
+    
+    prompt("Choose your weapon: #{VALID_CHOICES.join(", ")}")
+    choice = gets.chomp
+    
+      if VALID_CHOICES.include?(choice)
+        break
+      elsif  ABBREVIATED_CHOICES.include?(choice)
+       choice = change_initial(choice)
+       break
+      else
+        prompt("Whatever you just did, didn't work.  Give it another shot, genius.")
+      end
+    end
+end
+
 def winner?(first, second)
   (first == 'rock' && second == 'scissors') || (first == 'rock' && second == 'lizard') ||
   (first == 'paper' && second == 'rock') || (first == 'paper' && second == 'spock') ||
@@ -56,44 +78,34 @@ prompt("It's time to play ROCK, PAPER, SCISSOR, LIZARD, SPOCK!!!!!!!!!")
 prompt('The best out of five rounds, WINS!!')
 prompt('You can type out the full name, or just the first two letters.')
 
-loop do  
+loop do
+  
   scores = { player:  0, computer:  0 }
   until scores.value?(5)
   
-    choice = ' '
-    loop do
-    
-      prompt("Choose your weapon: #{VALID_CHOICES.join(", ")}")
-      choice = gets.chomp
-    
-      if VALID_CHOICES.include?(choice)
-        break
-      elsif  ABBREVIATED_CHOICES.include?(choice)
-       choice = change_initial(choice)
-       break
-      else
-        prompt("Whatever you just did, didn't work.  Give it another shot, genius.")
-      end
-    end
+  player_choice = choose_your_weapon
   
+  computer_choice = VALID_CHOICES.sample
   
-    computer_choice = VALID_CHOICES.sample
+  players_choice_display(player_choice, computer_choice)
   
-    prompt("You chose #{choice} and the computer chose #{computer_choice}")
+  winner = results(player_choice, computer_choice)
   
-    winner = results(choice, computer_choice)
+  prompt("#{winner}")
   
-    prompt("#{winner}")
+  display_results(winner, scores)
   
-    display_results(winner, scores)
-  
-    output_score(scores)
-    
+  output_score(scores)
   end
-  
-prompt('Play another round? Enter Y or N...')
-again = gets.chomp
-break unless again.downcase.start_with?('y')
+
+  prompt('Play another round? Enter Y or N...')
+  again = gets.chomp
+  if again.downcase.start_with?('y')
+    break
+  end
 end
+
+
+
 
 
