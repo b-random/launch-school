@@ -1,16 +1,3 @@
-# SET loan = input loan amount
-# SET apr = input apr percentage 1 - 15.5
-# SET total_interest = apr / 100 * loan
-# SET dur = input loan duration, 12, 24, 36, 48 or 60
-  #  divide loan by months
-# SET premium_per_month = loan/dur
-# PRINT premium_per_month
-# SET interest_per_month = total_interest/dur
-# PRINT interest_per_month
-# SET total_premium = premium_per_month + interest_per_month
-# SET years = dur / 12
-# PRINT total_premium for PRINT years
-
 def prompt(message)
     puts "#{message}"
 end
@@ -69,8 +56,6 @@ loop do
       prompt('Please enter valid length of loan:')
     end
   end
-  
-  
   
   total_interest = total_apr(apr, loan)
   monthly_interest = monthly_apr(total_interest, dur)
