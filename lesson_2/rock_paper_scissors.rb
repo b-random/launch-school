@@ -1,6 +1,5 @@
-VALID_CHOICES = %w(rock paper scissors lizard spock)
-                     # this is another way to write an array
-ABBREVIATED_CHOICES = %w(ro pa sc li sp)
+VALID_CHOICES = %w(rock paper scissors lizard spock).freeze
+ABBREVIATED_CHOICES = %w(ro pa sc li sp).freeze
 
 def prompt(message)
   puts(message)
@@ -21,21 +20,21 @@ def players_choice_display(player_one, player_two)
 end
 
 def choose_your_weapon
-    choice = ' '
-    loop do
+  choice = ' '
+  loop do
     
-    prompt("Choose your weapon: #{VALID_CHOICES.join(", ")}")
+    prompt("Choose your weapon: #{VALID_CHOICES.join(', ')}")
     choice = gets.chomp
     
-      if VALID_CHOICES.include?(choice)
-        break
-      elsif  ABBREVIATED_CHOICES.include?(choice)
-       choice = change_initial(choice)
-       break
-      else
-        prompt("Whatever you just did, didn't work.  Give it another shot, genius.")
-      end
+    if VALID_CHOICES.include?(choice)
+      return choice
+    elsif ABBREVIATED_CHOICES.include?(choice)
+      choice = change_initial(choice)
+      return choice
+    else
+      prompt("Whatever you just did, didn't work.  Give it another shot, genius.")
     end
+  end
 end
 
 def winner?(first, second)
@@ -73,7 +72,6 @@ def output_score(score_keeper)
   end
 end
 
-
 prompt("It's time to play ROCK, PAPER, SCISSOR, LIZARD, SPOCK!!!!!!!!!")
 prompt('The best out of five rounds, WINS!!')
 prompt('You can type out the full name, or just the first two letters.')
@@ -100,12 +98,7 @@ loop do
 
   prompt('Play another round? Enter Y or N...')
   again = gets.chomp
-  if again.downcase.start_with?('y')
+  unless again.downcase.start_with?('y')
     break
   end
 end
-
-
-
-
-
