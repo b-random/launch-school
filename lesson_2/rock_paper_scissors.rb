@@ -80,25 +80,23 @@ loop do
   
   scores = { player:  0, computer:  0 }
   until scores.value?(5)
-  
-  player_choice = choose_your_weapon
-  
-  computer_choice = VALID_CHOICES.sample
-  
-  players_choice_display(player_choice, computer_choice)
-  
-  winner = results(player_choice, computer_choice)
-  
-  prompt("#{winner}")
-  
-  display_results(winner, scores)
-  
-  output_score(scores)
+    player_choice = choose_your_weapon
+    
+    computer_choice = VALID_CHOICES.sample
+    
+    players_choice_display(player_choice, computer_choice)
+    
+    winner = results(player_choice, computer_choice)
+    
+    prompt("#{winner}")
+    
+    display_results(winner, scores)
+    
+    output_score(scores)
   end
-
+ 
   prompt('Play another round? Enter Y or N...')
-  again = gets.chomp
-  unless again.downcase.start_with?('y')
-    break
-  end
+  play_again = gets.chomp
+  break unless play_again.downcase.start_with?('y')
 end
+
