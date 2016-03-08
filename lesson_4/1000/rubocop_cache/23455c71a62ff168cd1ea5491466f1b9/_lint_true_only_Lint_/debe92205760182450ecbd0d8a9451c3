@@ -1,0 +1,1 @@
+[{"severity":"warning","location":{"begin_pos":1179,"end_pos":1182},"message":"`end` at 44, 4 is not aligned with `loop do                                                                          ` at 39, 2.","cop_name":"Lint/BlockAlignment","status":"uncorrected"}]

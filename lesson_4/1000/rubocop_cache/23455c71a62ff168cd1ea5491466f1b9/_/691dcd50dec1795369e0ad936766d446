@@ -1,0 +1,1 @@
+[{"severity":"convention","location":{"begin_pos":2830,"end_pos":2830},"message":"Final newline missing.","cop_name":"Style/TrailingBlankLines","status":"uncorrected"}]
