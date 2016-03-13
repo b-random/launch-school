@@ -1,5 +1,5 @@
-SUITS = ['Heart', 'Diamonds', 'Spades', 'Clubs']
-CARDS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A' ]
+SUITS = ['Heart', 'Diamonds', 'Spades', 'Clubs'].freeze
+CARDS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'].freeze
 
 def shuffle_deck
   CARDS.product(SUITS).shuffle
@@ -20,7 +20,7 @@ def value(cards)
     end
   end
   
-  totals.select { |value| value == 'A'}.count.times do
+  totals.count { |value| value == 'A' }.times do
     sum -= 10 if sum > 21
   end
   
@@ -72,7 +72,7 @@ def play_again?
 end
 
 loop do
-system "clear"
+  system "clear"
   puts "Let's play BLACKJACK"
   puts "Enter to continue =>"
   $stdin.gets.chomp
@@ -86,9 +86,9 @@ system "clear"
     dealer_cards << deck.shift
   end
   
-  puts "Dealers cards: #{dealer_cards[0]} & ???"
+  puts "Dealers hand: #{dealer_cards[0]} & ???"
   puts
-  puts "You have: #{player_cards[0]} & #{player_cards[1]} for #{value(player_cards)}."
+  puts "Your hand: #{player_cards[0]} & #{player_cards[1]} for #{value(player_cards)}."
   
   
     
@@ -121,12 +121,17 @@ system "clear"
   puts "Dealers turn:"
   
   loop do 
+     
+    puts "Dealer shows second card"
+    puts
+    puts "#{dealer_cards}"
   
     break if bust?(dealer_cards) || value(dealer_cards) >= 17
     
-    puts "Dealer hit...=>"
-    $stdin = gets.chomp
+    puts "Dealer hits...=>"
+    $stdin.gets.chomp
     dealer_cards << deck.shift
+    
     puts "Dealers hand is now: \n#{dealer_cards}"
     puts
   end
@@ -140,9 +145,11 @@ system "clear"
   end
   
   puts "******************************************"
+  system 'clear'
   puts "Dealer has #{dealer_cards}, with a value of #{value(dealer_cards)}..."
   puts "You have #{player_cards}, with a value of #{value(player_cards)}."
   puts
+  show_results(dealer_cards, player_cards)
   puts "******************************************"
   
   play_again? ? next : break
